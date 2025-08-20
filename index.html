@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Verify AI Information — Image Select Activity</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --pink:#e72582;
+      --grey:#abb5bf;
+      --blue:#1f2a52;
+      --teal:#00bec7;
+      --light:#d2f0f0;
+      --darker:#2e4d6b;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--blue);
+      background:#fff;
+    }
+    .wrap{
+      max-width:1200px;
+      margin:24px auto;
+      padding:16px;
+    }
+    .activity{
+      display:grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap:20px;
+      align-items:start;
+    }
+    @media (max-width: 920px){
+      .activity{
+        grid-template-columns:1fr;
+      }
+    }
+    .panel{
+      background:var(--light);
+      border:1px solid var(--grey);
+      border-radius:14px;
+      padding:20px 22px;
+      box-shadow:0 2px 10px rgba(0,0,0,.04);
+      min-height:360px;
+    }
+    h1{
+      font-size:20px;
+      margin:4px 0 14px;
+      color:var(--darker);
+    }
+    .lead{
+      font-size:14px;
+      margin:0 0 16px;
+      color:#20324a;
+    }
+    .panel img.context{
+      display:block;
+      max-width:100%;
+      height:auto;
+      border-radius:12px;
+      border:1px solid var(--grey);
+      margin-top:14px;
+    }
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(3, 158px);
+      grid-auto-rows: 236px;
+      gap:14px 16px;
+      justify-content:center;
+    }
+    @media (max-width: 560px){
+      .grid{
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: 210px;
+      }
+    }
+    @media (max-width: 380px){
+      .grid{
+        grid-template-columns: 1fr;
+      }
+    }
+    .thumb{
+      position:relative;
+      width:158px; height:236px;
+      border-radius:14px;
+      overflow:hidden;
+      border:2px solid transparent;
+      cursor:pointer;
+      box-shadow:0 3px 12px rgba(0,0,0,.08);
+      transition:.18s transform ease, .18s border-color ease, .18s box-shadow ease;
+      background:#f7fafb;
+    }
+    .thumb:hover{ transform:translateY(-2px); box-shadow:0 6px 16px rgba(0,0,0,.12); border-color:var(--teal); }
+    .thumb[aria-selected="true"]{ border-color:var(--pink); box-shadow:0 0 0 3px rgba(231,37,130,.15) inset; }
+    .thumb img{
+      width:100%; height:100%; object-fit:cover; display:block;
+    }
+    .label{
+      position:absolute; left:8px; right:8px; bottom:8px;
+      background:rgba(31,42,82,.86);
+      color:#fff; font-size:12px; font-weight:600;
+      padding:6px 8px; border-radius:10px;
+      line-height:1.2;
+    }
+    a{ color:var(--teal); }
+    ul{ margin:0 0 10px 18px; }
+    li{ margin:6px 0; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="activity" id="activity">
+      <section class="panel" id="contentPanel" aria-live="polite">
+        <h1 id="contentTitle"></h1>
+        <p class="lead" id="contentBody"></p>
+        <img class="context" id="contentImage" alt="">
+      </section>
+      <nav class="grid" aria-label="Verification activities">
+        <button class="thumb" aria-selected="false" data-title="Reverse Search or Keyword Search" data-content='<ul><li>Copy and paste specific phrases, names, or statistics from the AI&apos;s output into another search engine.</li><li>Add terms like <strong>&ldquo;fact check&rdquo;</strong>, <strong>&ldquo;provide the source&rdquo;</strong>, <strong>&ldquo;is it true&rdquo;</strong>, <strong>&ldquo;hoax&rdquo;</strong>, or <strong>&ldquo;debunked&rdquo;</strong> to your queries.</li><li>Copilot provides a superscript at the end of facts that link to its sources.</li></ul>' data-below="Reverse Search or Keyword Search 1.png"><img src="Reverse Search or Keyword Search.png" alt=""><span class="label">Reverse Search or Keyword Search</span></button>
+        <button class="thumb" aria-selected="false" data-title="Reputable Sources" data-content='<p>When verifying information, consult reputable sources such as academic databases (e.g., Google Scholar, PubMed, JSTOR) and university libraries.</p><p>Official Australian government websites, including the ABS and state/territory health departments, also provide reliable data.</p><p>Seek insights from industry experts, professional organisations, industry associations, and dedicated Australian fact-checking organisations such as <em>RMIT ABC Fact Check</em>.</p>' data-below="Reputable Sources.png"><img src="Reputable Sources.png" alt=""><span class="label">Reputable Sources</span></button>
+        <button class="thumb" aria-selected="false" data-title="Misinterpretations" data-content='<p>AI might accurately summarise a concept but misinterpret its nuances or present a biased version.</p><p>Always check that the summary reflects the original intent or meaning.</p>' data-below="Misinterpretations 1.png"><img src="Misinterpretations.png" alt=""><span class="label">Misinterpretations</span></button>
+        <button class="thumb" aria-selected="false" data-title="Verify Statistics and Data" data-content='<ul><li>Find the original source of any statistic and check its context, date, and methodology.</li><li>Look for footnotes, citations, or references—and confirm they actually support the claim.</li><li>Be aware: AI can sometimes &ldquo;hallucinate&rdquo; citations.</li></ul>' data-below="Verify Statistics and Data 1.png"><img src="Verify Statistics and Data.png" alt=""><span class="label">Verify Statistics and Data</span></button>
+        <button class="thumb" aria-selected="false" data-title="Examine Citations" data-content='<ul><li>If the AI provides citations (URLs, book titles, author names), manually check each one.</li><li>Do the links work? Do the sources actually contain the claimed information? Are they legitimate publications?</li></ul>' data-below="Examine Citations 1.png"><img src="Examine Citations.png" alt=""><span class="label">Examine Citations</span></button>
+      </nav>
+    </div>
+  </div>
+  <script>
+    (function(){
+      const panelTitle = document.getElementById('contentTitle');
+      const panelBody  = document.getElementById('contentBody');
+      const panelImg   = document.getElementById('contentImage');
+      const thumbs = Array.from(document.querySelectorAll('.thumb'));
+      function selectThumb(btn){
+        thumbs.forEach(t => t.setAttribute('aria-selected', 'false'));
+        btn.setAttribute('aria-selected', 'true');
+        panelTitle.textContent = btn.dataset.title || '';
+        panelBody.innerHTML = btn.dataset.content || '';
+        if(btn.dataset.below){
+          panelImg.src = btn.dataset.below;
+          panelImg.alt = btn.dataset.title;
+          panelImg.style.display = 'block';
+        }else{
+          panelImg.removeAttribute('src');
+          panelImg.style.display = 'none';
+        }
+      }
+      thumbs.forEach(btn=>{
+        btn.addEventListener('click', ()=>selectThumb(btn));
+      });
+      // Auto-load the first activity on page load
+      if(thumbs.length > 0){
+        selectThumb(thumbs[0]);
+      }
+    })();
+  </script>
+</body>
+</html>
+
